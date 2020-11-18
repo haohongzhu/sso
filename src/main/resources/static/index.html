@@ -1,0 +1,34 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>账号</label>
+<input type="text" id="userName">
+<label>密码</label>
+<input type="password" id="pwd">
+<button id="commit">确认</button>
+</body>
+<script src="/js/jquery.min.js"></script>
+<script>
+
+    $("#commit").click(function () {
+        let userName = $("#userName").val();
+        let pwd = $("#pwd").val();
+        buttonCommit(userName, pwd);
+    })
+
+    function buttonCommit(userName, password) {
+
+        $.ajax({
+            url: '/login',
+            data: {userName: userName, password : password},
+            dataType: 'json',
+            success : function (result) {
+                window.location = result.data
+            }
+        })
+    }
+</script>
+</html>
